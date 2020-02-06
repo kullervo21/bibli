@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import bibli.model.Joueur;
 
@@ -31,6 +33,8 @@ public class AccessDB implements Serializable {
 	//}
 	
 	public AccessDB() {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("bibli");
+		em = emf.createEntityManager();
 	}
 	
 	public EntityManager getEm() {return em;}

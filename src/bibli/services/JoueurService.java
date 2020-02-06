@@ -35,6 +35,8 @@ public class JoueurService implements Serializable {
 	public void setjList(List<Joueur> jList) {
 		this.jList = jList;
 	}
+
+
 	
 	
 	
