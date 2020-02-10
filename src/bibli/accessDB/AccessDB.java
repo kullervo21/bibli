@@ -33,7 +33,7 @@ public class AccessDB implements Serializable {
 	//}
 	
 	public AccessDB() {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("bibli");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("psgDSPool");
 		em = emf.createEntityManager();
 	}
 	
