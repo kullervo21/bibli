@@ -61,13 +61,13 @@
 						<h:outputText value="Date de naissance : " />
 						<h:outputText value="#{joueur.dateNaissanceJoueur}"
 							style="font-weight: bold">
-							<f:convertDateTime pattern="dd/MM/yyyy"/>
+							<f:convertDateTime pattern="dd/MM/yyyy" timeZone="Europe/Paris"/>
 						</h:outputText>
 							
 						<h:outputText value="Première saison : " />
 						<h:outputText value="#{joueur.premiereSaison}"
 							style="font-weight: bold" >
-							<f:convertDateTime pattern="yyyy"/>
+							<f:convertDateTime pattern="yyyy" timeZone="Europe/Paris"/>
 						</h:outputText>
 							
 					</h:panelGrid>

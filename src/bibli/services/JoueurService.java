@@ -24,9 +24,14 @@ public class JoueurService implements Serializable {
 	@Inject
 	AccessDB adb;
 	List<Joueur> jList;
-	
+
 	@PostConstruct
-	public void init() {jList = adb.getJoueurCollect();}
+	public void init() {
+		jList = adb.getJoueurCollect();
+		for (Joueur j : jList) {
+			System.out.println(j);
+		}
+		;}
 
 	public List<Joueur> getjList() {
 		return jList;
@@ -37,7 +42,7 @@ public class JoueurService implements Serializable {
 	}
 
 
-	
-	
-	
+
+
+
 }

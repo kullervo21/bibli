@@ -2,7 +2,10 @@ package bibli.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -10,15 +13,13 @@ import java.util.Date;
  * 
  */
 @Entity
-@Table(name = "joueur")
 @NamedQuery(name="Joueur.findAll", query="SELECT j FROM Joueur j")
 public class Joueur implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_joueur")
-	private int idJoueur;
+	private int id;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="date_naissance_joueur")
@@ -47,15 +48,19 @@ public class Joueur implements Serializable {
 	@Column(name="prenom_joueur")
 	private String prenomJoueur;
 
+	//bi-directional many-to-one association to Participer
+	@OneToMany(mappedBy="joueur", fetch=FetchType.EAGER)
+	private List<Participer> participers = new ArrayList<Participer>();
+
 	public Joueur() {
 	}
 
-	public int getIdJoueur() {
-		return this.idJoueur;
+	public int getId() {
+		return this.id;
 	}
 
-	public void setIdJoueur(int idJoueur) {
-		this.idJoueur = idJoueur;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public Date getDateNaissanceJoueur() {
@@ -122,4 +127,36 @@ public class Joueur implements Serializable {
 		this.prenomJoueur = prenomJoueur;
 	}
 
+	public List<Participer> getParticipers() {
+		return this.participers;
+	}
+
+	public void setParticipers(List<Participer> participers) {
+		this.participers = participers;
+	}
+
+	public Participer addParticiper(Participer participer) {
+		getParticipers().add(participer);
+		participer.setJoueur(this);
+
+		return participer;
+	}
+
+	public Participer removeParticiper(Participer participer) {
+		getParticipers().remove(participer);
+		participer.setJoueur(null);
+
+		return participer;
+	}
+
+	@Override
+	public String toString() {
+		return "Joueur [id=" + id + ", dateNaissanceJoueur=" + dateNaissanceJoueur + ", dernierSaison=" + dernierSaison
+				+ ", diversJoueur=" + diversJoueur + ", nomJoueur=" + nomJoueur + ", photoJoueur=" + photoJoueur
+				+ ", posteJoueur=" + posteJoueur + ", premiereSaison=" + premiereSaison + ", prenomJoueur="
+				+ prenomJoueur + ", participers=" + participers + "]";
+	}
+
+	
+	
 }
