@@ -30,6 +30,12 @@ public class Participer implements Serializable {
 	@JoinColumn(name="id_joueur", insertable=false, updatable=false)
 	private Joueur joueur;
 
+	//bi-directional many-to-one association to Saison
+	@ManyToOne
+	@JoinColumn(name="id_saison", insertable=false, updatable=false)
+	private Saison saison;
+	
+	
 	public Participer() {
 	}
 
@@ -71,6 +77,14 @@ public class Participer implements Serializable {
 
 	public void setJoueur(Joueur joueur) {
 		this.joueur = joueur;
+	}
+
+	public Saison getSaison() {
+		return saison;
+	}
+
+	public void setSaison(Saison saison) {
+		this.saison = saison;
 	}
 
 	
